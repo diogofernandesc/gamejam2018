@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50817803166353292}
   - component: {fileID: 61965529870336654}
   - component: {fileID: 114881969812106310}
+  - component: {fileID: 114832407594257380}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -105,6 +106,19 @@ MonoBehaviour:
   moveSpeed: 0
   turnSpeed: 0
   health: 0
+  pc: {fileID: 114832407594257380}
+--- !u!114 &114832407594257380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1440139779733158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa64676e8383651489faa9e09932aabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 1
 --- !u!114 &114881969812106310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +137,7 @@ MonoBehaviour:
   niceBullet: {fileID: 114069020214544594, guid: 002538d51b980fe428fd93ca698e376d,
     type: 2}
   bulletOffset: 0
+  pc: {fileID: 114832407594257380}
 --- !u!212 &212367442396155774
 SpriteRenderer:
   m_ObjectHideFlags: 1
