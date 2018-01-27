@@ -6,14 +6,7 @@ using UnityEngine;
 public class RobotController : MonoBehaviour {
 
 	public Rigidbody2D rb2d;
-<<<<<<< HEAD:Assets/Scripts/RobotController.cs
 	public float speed;
-	public int health;
-
-	// Use this for initialization
-	void Start () {
-		health = 5;
-=======
 	public float moveSpeed;
 	public float turnSpeed;
 
@@ -21,7 +14,7 @@ public class RobotController : MonoBehaviour {
 	void Start () {
 		this.moveSpeed = 5f;
 		this.turnSpeed = 5f;
->>>>>>> f7a7d85ad90dd79452a0e1cd7da1f812ce2561fc:Assets/RobotController.cs
+		this.health = 5;
 	}
 	
 	// Update is called once per frame
