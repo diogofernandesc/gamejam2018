@@ -6,6 +6,10 @@ public class EnemyController : MonoBehaviour {
 
 	public Rigidbody2D rb2d;
 	public int health;
+	public GameObject player;
+	private float range;
+	public float speed = 2f;
+	private float minDistance = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -14,17 +18,23 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (this.health == 0)
+		if (this.health == 0) {
 			Destroy (this.gameObject);
+      return;
+    }
+		player = GameObject.FindGameObjectWithTag ("Player");
+		range = Vector2.Distance(transform.position, player.transform.position);
+//		if (range > minDistance) {
+//		}
+		transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
+		
 		RobotController rc = col.gameObject.GetComponent<RobotController> ();
 		if (rc != null) {
 			rc.health -= 1;
 
-			Vector2 jumpForce = new Vector2 (-20, -20);
-			rb2d.AddForce (jumpForce);
 		}
 	}
 }
