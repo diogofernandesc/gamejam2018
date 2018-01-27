@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		range = Vector2.Distance(transform.position, player.transform.position);
+//		if (range > minDistance) {
+//		}
 		transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
 	}
@@ -28,12 +30,7 @@ public class EnemyController : MonoBehaviour {
 		RobotController rc = col.gameObject.GetComponent<RobotController> ();
 		if (rc != null) {
 			rc.health -= 1;
-<<<<<<< HEAD
-=======
 
-			Vector2 jumpForce = new Vector2 (-20, -20);
-			rb2d.AddForce (jumpForce);
->>>>>>> 0563091bf444d61e617028b379220325a8bedaac
 		}
 	}
 }
