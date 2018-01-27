@@ -9,17 +9,15 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.speed = 3;
-		float zangle = this.transform.eulerAngles.z;
-		rb2d.velocity = new Vector2 (this.speed * Mathf.Cos(zangle), this.speed * Mathf.Sin(zangle));
+		//The speed the bullet will move at.
+		//Try to keep it faster than the speed of the robot, or you'll be able to run into your own bullets.
+		this.speed = 8;
+		float zangleRad = this.transform.eulerAngles.z * Mathf.Deg2Rad;
+		rb2d.velocity = new Vector2 (this.speed * Mathf.Cos(zangleRad), this.speed * Mathf.Sin(zangleRad));
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	void OnTriggerEnter() {
-		print ("LOL COLLIDED");
 	}
 }
