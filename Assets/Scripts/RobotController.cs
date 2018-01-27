@@ -9,6 +9,8 @@ public class RobotController : MonoBehaviour {
 	public float speed;
 	public float moveSpeed;
 	public float turnSpeed;
+	public float health;
+
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,7 @@ public class RobotController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("PickUp")) {
-			health += 1;
+			this.health += 1;
 			other.gameObject.SetActive (false);
 		}
 //		} else if (other.gameObject.CompareTag ("Enemy")) {
