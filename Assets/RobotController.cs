@@ -6,16 +6,21 @@ using UnityEngine;
 public class RobotController : MonoBehaviour {
 
 	public Rigidbody2D rb2d;
-	public float speed;
+	public float moveSpeed;
+	public float turnSpeed;
 
 	// Use this for initialization
 	void Start () {
-		
+		this.moveSpeed = 5f;
+		this.turnSpeed = 5f;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Vector2 mov = new Vector2(this.speed * Input.GetAxis ("Horizontal"), this.speed * Input.GetAxis ("Vertical"));
+		//Moving and steering
+		float absoluteMoveSpeed = Input.GetAxis ("Vertical") * this.moveSpeed;
+		Vector2 mov = new Vector2(absoluteMoveSpeed * Mathf.Cos(this.transform.eulerAngles.z * Mathf.Deg2Rad), absoluteMoveSpeed * Mathf.Sin(this.transform.eulerAngles.z * Mathf.Deg2Rad));
 		this.rb2d.velocity = mov;
+		this.rb2d.MoveRotation (this.transform.eulerAngles.z + (Input.GetAxis ("Horizontal") * -this.turnSpeed));
 	}
 }
