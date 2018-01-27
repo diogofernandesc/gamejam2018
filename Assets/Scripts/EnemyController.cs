@@ -28,6 +28,12 @@ public class EnemyController : MonoBehaviour {
 		RobotController rc = col.gameObject.GetComponent<RobotController> ();
 		if (rc != null) {
 			rc.health -= 1;
+<<<<<<< HEAD
+=======
+
+			Vector2 jumpForce = new Vector2 (-20, -20);
+			rb2d.AddForce (jumpForce);
+>>>>>>> 0563091bf444d61e617028b379220325a8bedaac
 		}
 	}
 }

@@ -6,7 +6,8 @@ public class Shooter : MonoBehaviour
 {
 	public float max_cooldown;
 	public float cooldown;
-	public Bullet bullet;
+	public Bullet meanBullet;
+	public Bullet niceBullet;
 	public float bulletOffset;
 
 	// Use this for initialization
@@ -20,9 +21,15 @@ public class Shooter : MonoBehaviour
 		if (this.cooldown > 0.0f) {
 			this.cooldown -= 0.1f;
 		}
-		if (Input.GetKey ("space") || Input.GetAxis("Fire1") != 0) {
+		if (Input.GetKey ("z") || Input.GetAxis("Fire1") != 0) {
 			if (this.cooldown <= 0.0f) {
-				Instantiate (bullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
+				Instantiate (meanBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
+				this.cooldown = this.max_cooldown;
+			}
+		}
+		else if (Input.GetKey ("x") || Input.GetAxis("Fire2") != 0) {
+			if (this.cooldown <= 0.0f) {
+				Instantiate (niceBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
 				this.cooldown = this.max_cooldown;
 			}
 		}

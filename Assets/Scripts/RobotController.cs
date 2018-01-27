@@ -9,8 +9,7 @@ public class RobotController : MonoBehaviour {
 	public float speed;
 	public float moveSpeed;
 	public float turnSpeed;
-	public float health;
-
+	public int health;
 
 	// Use this for initialization
 	void Start () {
