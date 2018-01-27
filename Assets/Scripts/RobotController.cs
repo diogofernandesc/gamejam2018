@@ -29,7 +29,7 @@ public class RobotController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("PickUp")) {
-			health += 1;
+			this.health += 1;
 			other.gameObject.SetActive (false);
 		}
 //		} else if (other.gameObject.CompareTag ("Enemy")) {
