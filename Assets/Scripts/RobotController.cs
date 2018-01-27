@@ -10,6 +10,7 @@ public class RobotController : MonoBehaviour {
 	public float moveSpeed;
 	public float turnSpeed;
 	public int health;
+	public PlayerControlled pc;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,19 @@ public class RobotController : MonoBehaviour {
 		this.turnSpeed = 5f;
 		this.health = 5;
 	}
+
+	void Update() {
+		if (this.health == 0)
+			Destroy (this.gameObject);
+	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Moving and steering
-		float absoluteMoveSpeed = Input.GetAxis ("Vertical") * this.moveSpeed;
+		float absoluteMoveSpeed = pc.moveAmount() * this.moveSpeed;
 		Vector2 mov = new Vector2(absoluteMoveSpeed * Mathf.Cos(this.transform.eulerAngles.z * Mathf.Deg2Rad), absoluteMoveSpeed * Mathf.Sin(this.transform.eulerAngles.z * Mathf.Deg2Rad));
 		this.rb2d.velocity = mov;
-		this.rb2d.MoveRotation (this.transform.eulerAngles.z + (Input.GetAxis ("Horizontal") * -this.turnSpeed));
+		this.rb2d.MoveRotation (this.transform.eulerAngles.z + (pc.turnAmount() * -this.turnSpeed));
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

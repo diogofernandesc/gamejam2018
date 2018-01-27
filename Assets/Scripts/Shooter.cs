@@ -9,11 +9,13 @@ public class Shooter : MonoBehaviour
 	public Bullet meanBullet;
 	public Bullet niceBullet;
 	public float bulletOffset;
+	public PlayerControlled pc;
 
 	// Use this for initialization
 	void Start () {
 		this.cooldown = 0.0f;
 		this.max_cooldown = 1.0f;
+		this.bulletOffset = 0.4f;
 	}
 	
 	// Update is called once per frame
@@ -21,15 +23,17 @@ public class Shooter : MonoBehaviour
 		if (this.cooldown > 0.0f) {
 			this.cooldown -= 0.1f;
 		}
-		if (Input.GetKey ("z") || Input.GetAxis("Fire1") != 0) {
+		if (pc.isFiring1()) {
 			if (this.cooldown <= 0.0f) {
 				Instantiate (meanBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
+				meanBullet.setShooter (this.gameObject);
 				this.cooldown = this.max_cooldown;
 			}
 		}
-		else if (Input.GetKey ("x") || Input.GetAxis("Fire2") != 0) {
+		else if (pc.isFiring2()) {
 			if (this.cooldown <= 0.0f) {
 				Instantiate (niceBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
+				niceBullet.setShooter (this.gameObject);
 				this.cooldown = this.max_cooldown;
 			}
 		}

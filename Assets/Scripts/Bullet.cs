@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 
 	public float speed;
 	public Rigidbody2D rb2d;
+	public int damage;
+	private GameObject shooter;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +20,21 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+	}
+
+	void OnCollisionEnter2D(Collision2D c2d) {
+		GameObject collidingObject = c2d.gameObject;
+		if (collidingObject != this.shooter) {
+			if (collidingObject.GetComponent<RobotController> () != null) {
+				collidingObject.GetComponent<RobotController> ().health += damage;
+			} else if (collidingObject.GetComponent<EnemyController> () != null) {
+				collidingObject.GetComponent<EnemyController> ().health += damage;
+			}
+			Destroy (this.gameObject);
+		}
+	}
+
+	public void setShooter(GameObject shooter) {
+		this.shooter = shooter;
 	}
 }

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   rb2d: {fileID: 50837857424718878}
+  damage: -1
 --- !u!212 &212275130328089348
 SpriteRenderer:
   m_ObjectHideFlags: 1
