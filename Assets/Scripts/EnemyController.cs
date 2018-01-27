@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour {
 			rc.health -= 1;
 
 			Vector2 jumpForce = new Vector2 (-20, -20);
+			rb2d.AddForce (jumpForce);
 		}
 	}
 }
