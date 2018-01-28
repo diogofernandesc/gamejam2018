@@ -20,8 +20,8 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		if (this.health == 0) {
 			Destroy (this.gameObject);
-      return;
-    }
+      		return;
+   		}	
 		player = GameObject.FindGameObjectWithTag ("Player");
 		range = Vector2.Distance(transform.position, player.transform.position);
 //		if (range > minDistance) {
