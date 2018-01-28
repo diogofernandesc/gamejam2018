@@ -11,9 +11,6 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		var test = new Vector3(17/10,0,0);
 		offset = transform.position - player.transform.position + test;
-
-		var test2 = new Vector2(17/10,0);
-
 //		print (stones.GetComponent<SpriteRenderer>.bounds.size.x);
 		//transform.position = new Vector3
 		//	(
@@ -25,9 +22,8 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		print (transform.position.x);
 		///if (transform.position.x > -6.4 || player.transform.position.x > -5) {
-			transform.position = player.transform.position + offset;
+		transform.position = player.transform.position + offset;
 		//}
 	}
 }

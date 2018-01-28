@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &94107765 stripped
 GameObject:
@@ -190,6 +195,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -205,6 +211,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -374,6 +381,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -389,6 +397,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -434,10 +443,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae08501fbb1c74987b0a23dae38f7f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 94107765}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   enemy: {fileID: 1857045920119108, guid: fff6907f4551c49fcab75efc2fb0c5cb, type: 2}
+  rangeX: 0
+  rangeY: 0
   spawnRate: 2
-  distanceFromEnemy: 2
+  distanceFromPlayers: 2
   distanceFromBoosts: 1
 --- !u!4 &1081289802
 Transform:
@@ -503,7 +515,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1807250534}
   - component: {fileID: 1807250533}
-  - component: {fileID: 1807250532}
   - component: {fileID: 1807250531}
   - component: {fileID: 1807250530}
   - component: {fileID: 1807250529}
@@ -522,7 +533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1807250528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2af1f105f87a2499868aff05f279f0, type: 3}
+  m_Script: {fileID: 11500000, guid: f8d19f380273f4e8cb5fa49be1ccc9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 94107765}
@@ -534,13 +545,6 @@ AudioListener:
   m_GameObject: {fileID: 1807250528}
   m_Enabled: 1
 --- !u!124 &1807250531
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1807250528}
-  m_Enabled: 1
---- !u!92 &1807250532
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -578,11 +582,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1807250534
 Transform:
   m_ObjectHideFlags: 0

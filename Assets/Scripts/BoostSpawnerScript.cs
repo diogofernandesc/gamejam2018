@@ -7,7 +7,6 @@ public class BoostSpawnerScript : MonoBehaviour {
 	public float distanceFromOtherBoosts = 3f;
 	public float distanceFromPlayer = 2f;
 	public float distanceFromEnemies = 2f;
-	public GameObject player;
 	public GameObject boost;
 	float randX;
 	float randY;
@@ -15,6 +14,7 @@ public class BoostSpawnerScript : MonoBehaviour {
 	public float spawnRate = 2f;
 	public GameObject[] boosts;
 	public GameObject[] enemies;
+	public GameObject[] players;
 	float nextSpawn = 0.0f;
 
 	// Use this for initialization
@@ -26,6 +26,7 @@ public class BoostSpawnerScript : MonoBehaviour {
 
 		boosts = GameObject.FindGameObjectsWithTag ("PickUp");
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		players = GameObject.FindGameObjectsWithTag ("Player");
 
 		if (Time.time > nextSpawn) {
 			nextSpawn = Time.time + spawnRate;
@@ -35,11 +36,13 @@ public class BoostSpawnerScript : MonoBehaviour {
 
 			bool canSpawn = true;
 
-			// Ensure boost is spawned far enough away from player
-			if (Vector2.Distance (whereToSpawn, player.transform.position) < distanceFromPlayer) {
-				canSpawn = false;	
-			
-			} 
+			foreach (GameObject player in players) {
+				// Ensure boost is spawned far enough away from player
+				if (Vector2.Distance (whereToSpawn, player.transform.position) < distanceFromPlayer) {
+					canSpawn = false;	
+				
+				}
+			}
 
 			// Ensure boost is spawned far away but close enough to enemies
 			foreach (GameObject enemy in enemies) {

@@ -9,6 +9,7 @@ public class RobotController : MonoBehaviour {
 	public float speed;
 	public float moveSpeed;
 	public float turnSpeed;
+	public int startingHealth;
 	public int health;
 	public PlayerControlled pc;
 
@@ -35,14 +36,11 @@ public class RobotController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("PickUp")) {
-			this.health += 1;
+			if (this.health < startingHealth) {
+				this.health += 1;
+			}
 			other.gameObject.SetActive (false);
 		}
-//		} else if (other.gameObject.CompareTag ("Enemy")) {
-//			health -= 1;
-//			Vector2 jumpForce = new Vector2(1,1);
-//			rb2d.AddForce (jumpForce, ForceMode2D.Impulse);
-//		}
 	}
 		
 }
