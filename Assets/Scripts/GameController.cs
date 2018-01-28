@@ -32,6 +32,9 @@ public class GameController : MonoBehaviour {
 	public void UpdateHealthBarSprite(RobotController robot, SpriteRenderer healthBarSprite){
 //		robot = GameObject.Find ("Robot").GetComponent<RobotController> ();
 //		healthBarSprite = GameObject.Find ("HealthBar").GetComponent<SpriteRenderer> ();
+		if (robot == null) {
+			healthBarSprite.sprite = fiveHealth;
+		}
 
 		switch (robot.health) {
 		case 5:

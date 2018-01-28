@@ -295,11 +295,11 @@ MonoBehaviour:
   distanceFromOtherBoosts: 3
   distanceFromPlayer: 2
   distanceFromEnemies: 2
-  player: {fileID: 0}
   boost: {fileID: 1621299742662052, guid: aef0c8da113d643c384e8e778d4740a2, type: 2}
   spawnRate: 2
   boosts: []
   enemies: []
+  players: []
 --- !u!4 &218025870
 Transform:
   m_ObjectHideFlags: 0
@@ -354,13 +354,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1440139779733158, guid: 854ea964ade955349aa1fcd23f418954, type: 2}
       propertyPath: m_Name
-      value: Robot (1)
+      value: Robot 2
       objectReference: {fileID: 0}
     - target: {fileID: 114271949765482396, guid: 854ea964ade955349aa1fcd23f418954,
         type: 2}
       propertyPath: healthBarSprite
       value: 
       objectReference: {fileID: 51423538}
+    - target: {fileID: 114832407594257380, guid: 854ea964ade955349aa1fcd23f418954,
+        type: 2}
+      propertyPath: playerID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440139779733158, guid: 854ea964ade955349aa1fcd23f418954, type: 2}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854ea964ade955349aa1fcd23f418954, type: 2}
   m_IsPrefabParent: 0
@@ -689,6 +698,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 77613592}
+  - {fileID: 1904586113}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -797,14 +807,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae08501fbb1c74987b0a23dae38f7f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
   enemy: {fileID: 1857045920119108, guid: fff6907f4551c49fcab75efc2fb0c5cb, type: 2}
-  rangeX: 0
-  rangeY: 0
+  rangeX: 10
+  rangeY: 10
   spawnRate: 2
-  distanceFromPlayers: 2
-  distanceFromBoosts: 1
+  distanceFromPlayers: 5
+  distanceFromBoosts: 2
 --- !u!4 &1081289802
 Transform:
   m_ObjectHideFlags: 0
@@ -891,6 +899,11 @@ Transform:
   m_Father: {fileID: 1807250534}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1162503117 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1440139779733158, guid: 854ea964ade955349aa1fcd23f418954,
+    type: 2}
+  m_PrefabInternal: {fileID: 701637004}
 --- !u!1001 &1787212780
 Prefab:
   m_ObjectHideFlags: 0
@@ -951,6 +964,7 @@ GameObject:
   - component: {fileID: 1807250530}
   - component: {fileID: 1807250529}
   - component: {fileID: 1807250535}
+  - component: {fileID: 1807250532}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -970,6 +984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 94107765}
+  player2: {fileID: 1162503117}
 --- !u!81 &1807250530
 AudioListener:
   m_ObjectHideFlags: 0
@@ -984,6 +999,17 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1807250528}
   m_Enabled: 1
+--- !u!114 &1807250532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807250528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca2dfd7f76de44efbec481dbdd0c001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1807250533
 Camera:
   m_ObjectHideFlags: 0
@@ -1053,3 +1079,89 @@ MonoBehaviour:
   threeHealth: {fileID: 21300004, guid: 269397ed7a4d4544f8dca918106c79db, type: 3}
   twoHealth: {fileID: 21300006, guid: 269397ed7a4d4544f8dca918106c79db, type: 3}
   oneHealth: {fileID: 21300008, guid: 269397ed7a4d4544f8dca918106c79db, type: 3}
+--- !u!1 &1904586112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1904586113}
+  - component: {fileID: 1904586115}
+  - component: {fileID: 1904586114}
+  - component: {fileID: 1904586116}
+  m_Layer: 5
+  m_Name: GameOverText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1904586113
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904586112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 737361298}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 338.05518, y: -261.5907}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1904586114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904586112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.41911763, g: 0.123269886, b: 0.123269886, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1b17cc9efe2fcc64b9588e9275537303, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 7
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Game Over!
+--- !u!222 &1904586115
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904586112}
+--- !u!114 &1904586116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904586112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ea1ab0115f6640b5e875816fafe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

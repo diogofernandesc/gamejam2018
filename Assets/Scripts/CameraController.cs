@@ -36,7 +36,6 @@ public class CameraController : MonoBehaviour {
 			if (!deadFirstTime) {
 				transform.position = Vector3.SmoothDamp(transform.position, (player2.transform.position + offset2), ref velocity, 4F);
 				deadFirstTime = true;
-				print ("hello");
 			} else {
 				transform.position = player2.transform.position + offset2;
 			}

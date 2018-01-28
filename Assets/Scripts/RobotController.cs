@@ -15,6 +15,7 @@ public class RobotController : MonoBehaviour {
 	public SpriteRenderer healthBarSprite;
 	public PlayerControlled pc;
 	public GameController gameController;
+	GameObject[] players;
 
 	// Use this for initialization
 	void Start () {
@@ -27,14 +28,12 @@ public class RobotController : MonoBehaviour {
   }
 
 	void LateUpdate() {
-		if (this.health <= 0)
-			Destroy (this.gameObject);
-			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
-			gameOverText.enabled = true;	
-		}
-
 		gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
 		gameController.UpdateHealthBarSprite (this, healthBarSprite);
+
+		if (this.health <= 0) {
+			Destroy (this.gameObject);
+		}
 	}
 	
 	// Update is called once per frame

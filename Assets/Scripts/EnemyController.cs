@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour {
 	public float speed = 2f;
 	private GameObject playerToUse;
 	GameObject[] players;
+	public GameObject player1;
+	public GameObject player2;
 	// Use this for initialization
 	void Start () {
 		this.health = 2;
@@ -18,23 +20,45 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		if (this.health == 0) {
 			Destroy (this.gameObject);
-      		return;
+//      		return;
    		}
-		players = GameObject.FindGameObjectsWithTag ("Player");
+		player1 = GameObject.FindGameObjectWithTag ("Player");
+		player2 = GameObject.FindGameObjectWithTag ("Player2");
+//		players = GameObject.FindGameObjectsWithTag ("Player");
+		if (player1 == null) {
+			playerToUse = player2;
+		
+		} else if (player2 == null) {
+			playerToUse = player1;
 
-		if (players.Length == 1) {
-			playerToUse = players [0];
-
-		} else if (players.Length == 2) {
-			float distanceToPlayer1 = Vector2.Distance (transform.position, players[0].transform.position);
-			float distanceToPlayer2 = Vector2.Distance (transform.position, players[1].transform.position);
+		} else {
+			float distanceToPlayer1 = Vector2.Distance (transform.position, player1.transform.position);
+			float distanceToPlayer2 = Vector2.Distance (transform.position, player2.transform.position);
 
 			// Finds closest player and chases them instead
-			if ((Mathf.Min(distanceToPlayer1, distanceToPlayer2)) == distanceToPlayer2) {
-				playerToUse = players[1];
-			} 
+			if (distanceToPlayer1 > distanceToPlayer2) {
+				playerToUse = player2;
+			} else if (distanceToPlayer1 < distanceToPlayer2) {
+				playerToUse = player1;
+			}
 		}
 
+//		print (players.Length);
+//		if (players.Length == 1) {
+//			playerToUse = players [0];
+//
+//		} else {
+//			float distanceToPlayer1 = Vector2.Distance (transform.position, players[0].transform.position);
+//			float distanceToPlayer2 = Vector2.Distance (transform.position, players[1].transform.position);
+//
+//			print (distanceToPlayer1 + ", " + distanceToPlayer2);
+//
+//			// Finds closest player and chases them instead
+//			if (distanceToPlayer1 > distanceToPlayer2) {
+//				playerToUse = players[1];
+//			} 
+//		}
+//
 		if (playerToUse != null) {
 			transform.position = Vector2.MoveTowards (transform.position, playerToUse.transform.position, speed * Time.deltaTime);		
 		}
