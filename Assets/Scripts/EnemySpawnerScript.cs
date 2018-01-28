@@ -11,17 +11,22 @@ public class EnemySpawnerScript : MonoBehaviour {
 	float randX;
 	float randY;
 	Vector2 whereToSpawn;
+	public int health = 1;
+	public float speed = 1.5f;
 	public float spawnRate = 2f;
 	public float distanceFromPlayers = 2f;
 	public float distanceFromBoosts = 1f;
 	GameObject[] boosts;
 	GameObject[] players;
-
+	GameObject[] enemies;
+	private int totalKillCount;
 	float nextSpawn = 0.0f;
+	int waveAmount;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () {	
+		this.totalKillCount = 0;
+		this.waveAmount = 5;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +40,23 @@ public class EnemySpawnerScript : MonoBehaviour {
 			gameOverText.enabled = true;	
 		}
 
+		foreach (GameObject player in players) {
+			totalKillCount = 0;
+			totalKillCount += player.GetComponent<RobotController> ().killCount;
+		}
 
+
+		if (totalKillCount > 0) {
+			if (totalKillCount % this.waveAmount == 0) {
+				waveAmount += 5;
+				health += 1;
+				if (speed <= 4f) {
+					speed += 0.5f;
+				}
+				spawnRate -= 0.5f;
+			}
+		}
+			
 		if (Time.time > nextSpawn) {
 			nextSpawn = Time.time + spawnRate;
 			randX = Random.Range (-rangeX, rangeX);

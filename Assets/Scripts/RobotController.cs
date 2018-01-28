@@ -15,6 +15,7 @@ public class RobotController : MonoBehaviour {
 	public SpriteRenderer healthBarSprite;
 	public PlayerControlled pc;
 	public GameController gameController;
+	public int killCount;
 	GameObject[] players;
 
 	// Use this for initialization
@@ -22,6 +23,8 @@ public class RobotController : MonoBehaviour {
 		this.moveSpeed = 5f;
 		this.turnSpeed = 5f;
 		this.health = 5;
+		this.killCount = 0;
+		startingHealth = 5;
 	}
 
 	void Update() {
@@ -51,8 +54,6 @@ public class RobotController : MonoBehaviour {
 				this.health += 1;
 			}
 			other.gameObject.SetActive (false);
-			gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
-			gameController.updateScore (1);
 		} //else if (other.gameObject.CompareTag ("Enemy")) {
 			//health -= 1;
 			//Vector2 jumpForce = new Vector2(1,1);

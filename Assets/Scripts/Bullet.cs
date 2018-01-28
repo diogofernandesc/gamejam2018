@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
 	public int damage;
 	private GameObject shooter;
 
+
 	// Use this for initialization
 	void Start () {
 		//The speed the bullet will move at.
