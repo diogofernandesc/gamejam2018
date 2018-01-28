@@ -266,7 +266,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 11
+    positiveButton: joystick 1 button 13
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -282,7 +282,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 1 button 12
+    positiveButton: joystick 1 button 14
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -307,14 +307,14 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: joystick 2 fire 1 mac
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 11
+    positiveButton: joystick 2 button 13
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -330,7 +330,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick 2 button 12
+    positiveButton: joystick 2 button 14
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -355,5 +355,5 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 2
     joyNum: 2
