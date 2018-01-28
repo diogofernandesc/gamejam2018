@@ -9,14 +9,23 @@ public class PlayerControlled : MonoBehaviour {
 	private string TURN_KEY;
 	private string MOVE_KEY;
 	private string FIRE_1_JOY;
+	private string FIRE_1_JOY_MAC;
 	private string FIRE_2_JOY;
+	private string FIRE_2_JOY_MAC;
 	private string TURN_JOY;
+	private string TURN_JOY_MAC;
 	private string MOVE_JOY;
+	private bool isMac;
+
 	// Use this for initialization
 	void Start () {
+		this.isMac = Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.OSXPlayer;
 		FIRE_1_JOY = "joystick " + playerID + " fire 1";
+		FIRE_1_JOY_MAC = "joystick " + playerID + " fire 1 mac";
 		FIRE_2_JOY = "joystick " + playerID + " fire 2";
+		FIRE_2_JOY_MAC = "joystick " + playerID + " fire 2 mac";
 		TURN_JOY = "joystick " + playerID + " turn";
+		TURN_JOY_MAC = "joystick " + playerID + " turn mac";
 		MOVE_JOY = "joystick " + playerID + " move";
 		FIRE_1_KEY = "pc " + playerID + " fire 1";
 		FIRE_2_KEY = "pc " + playerID + " fire 2";
@@ -25,18 +34,21 @@ public class PlayerControlled : MonoBehaviour {
 	}
 
 	public bool isFiring1() {
-		return Input.GetAxis (FIRE_1_KEY) != 0f || Input.GetAxis(FIRE_1_JOY) != 0f;
+		float joyAxis = this.isMac ? Input.GetAxis (FIRE_1_JOY_MAC) : Input.GetAxis (FIRE_1_JOY);
+		return Input.GetAxis (FIRE_1_KEY) != 0f || joyAxis != 0f;
 	}
 
 	public bool isFiring2() {
-		return Input.GetAxis (FIRE_2_KEY) != 0f || Input.GetAxis(FIRE_2_JOY) != 0f;
+		float joyAxis = this.isMac ? Input.GetAxis (FIRE_2_JOY_MAC) : Input.GetAxis (FIRE_2_JOY);
+		return Input.GetAxis (FIRE_2_KEY) != 0f || joyAxis != 0f;
 	}
 
 	public float turnAmount() {
-		if (Input.GetAxis (TURN_KEY) == 0f) {
-			return Input.GetAxis (TURN_JOY);
+		float turnKeyAxis = Input.GetAxis (TURN_KEY);
+		if (turnKeyAxis == 0f) {
+			return this.isMac ? Input.GetAxis(TURN_JOY_MAC) : Input.GetAxis (TURN_JOY);
 		}
-		return Input.GetAxis (TURN_KEY);
+		return turnKeyAxis;
 	}
 
 	public float moveAmount() {
