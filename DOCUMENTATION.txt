@@ -2,18 +2,14 @@
 A co-op arena shooter involving careful transmission of resources between allies,
 and reckless transmission of pain to enemies.
 
---TO DO--
-Integrate the versions on our two PCs!
-Make all the art make sense!
-
 --CONTROLS--
-2 players; can use keyboard or controller.
+2 players; can use keyboard or controller. Controller RECOMMENDED!
  _____________________________________________________________________________
 |______Action______|__Keyboard_Player_1__|__Keyboard_Player_2__|__Controller__|
-|Move forward/back_|______UP/DOWN________|__________W/S________|_Left analog__|
-|Move left/right___|____LEFT/RIGHT_______|__________A/D________|Right analog__|
-|Damaging Bullet___|________,____________|___________G_________|_____L1_______|
-|Healing Bullet____|________.____________|___________H_________|_____R1_______|
+|Move tank_________|__UP/DOWN/LEFT/RIGHT_|_______W/S/A/D_______|_Left analog__|
+|Point turret______|______I/K/J/L________|_______T/G/F/H_______|_Right analog_|
+|Damaging Bullet___|________,____________|___________C_________|_____L1_______|
+|Healing Bullet____|________.____________|___________V_________|_____R1_______|
 
 --TIPS--
 Healing bullets transfer 1 health to anything hit by them.
@@ -22,7 +18,7 @@ heal any enemies that get in the way!
 
 --FUTURE WORK--
 Graphical improvements
-Higher variety of enemies
-Sound and special effects
+Higher visual variety of enemies
+Sound effects
 Main menu and weapon selections
-A secondary goal themed around transmission
+A secondary goal also themed around transmission
