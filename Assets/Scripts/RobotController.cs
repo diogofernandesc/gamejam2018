@@ -10,6 +10,7 @@ public class RobotController : MonoBehaviour {
 	public float speed;
 	public float moveSpeed;
 	public float turnSpeed;
+	public int startingHealth;
 	public int health;
 	public SpriteRenderer healthBarSprite;
 	public PlayerControlled pc;
@@ -23,7 +24,10 @@ public class RobotController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (this.health == 0) {
+  }
+
+	void LateUpdate() {
+		if (this.health <= 0)
 			Destroy (this.gameObject);
 			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
 			gameOverText.enabled = true;	
@@ -44,7 +48,9 @@ public class RobotController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("PickUp")) {
-			this.health += 1;
+			if (this.health < startingHealth) {
+				this.health += 1;
+			}
 			other.gameObject.SetActive (false);
 			gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
 			gameController.updateScore (1);
