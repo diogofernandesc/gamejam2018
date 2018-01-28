@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 //Triggered at these brackets
@@ -11,7 +12,9 @@ public class RobotController : MonoBehaviour {
 	public float turnSpeed;
 	public int startingHealth;
 	public int health;
+	public SpriteRenderer healthBarSprite;
 	public PlayerControlled pc;
+	public GameController gameController;
 
 	// Use this for initialization
 	void Start () {
@@ -21,11 +24,17 @@ public class RobotController : MonoBehaviour {
 	}
 
 	void Update() {
-	}
+  }
 
 	void LateUpdate() {
 		if (this.health <= 0)
 			Destroy (this.gameObject);
+			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
+			gameOverText.enabled = true;	
+		}
+
+		gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
+		gameController.UpdateHealthBarSprite (this, healthBarSprite);
 	}
 	
 	// Update is called once per frame
@@ -43,7 +52,13 @@ public class RobotController : MonoBehaviour {
 				this.health += 1;
 			}
 			other.gameObject.SetActive (false);
-		}
+			gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
+			gameController.updateScore (1);
+		} //else if (other.gameObject.CompareTag ("Enemy")) {
+			//health -= 1;
+			//Vector2 jumpForce = new Vector2(1,1);
+			//rb2d.AddForce (jumpForce, ForceMode2D.Impulse)
+		//}
 	}
 		
 }
