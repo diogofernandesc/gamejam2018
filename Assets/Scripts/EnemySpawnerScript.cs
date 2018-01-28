@@ -41,10 +41,15 @@ public class EnemySpawnerScript : MonoBehaviour {
 			gameOverText.enabled = true;	
 		
 		} else {
-
 			totalKillCount = 0;
-			totalKillCount += player1.GetComponent<RobotController> ().killCount;
-			totalKillCount += player2.GetComponent<RobotController> ().killCount;
+			if (player1 != null) {
+				totalKillCount += player1.GetComponent<RobotController> ().killCount;
+			}
+			if (player2 != null) {
+				totalKillCount += player2.GetComponent<RobotController> ().killCount;
+			}
+
+	
 
 			if (totalKillCount > 0) {
 				if (totalKillCount % this.waveAmount == 0) {
@@ -65,13 +70,18 @@ public class EnemySpawnerScript : MonoBehaviour {
 
 				bool canSpawn = true;
 
-				if (Vector2.Distance (whereToSpawn, player1.transform.position) < distanceFromPlayers) {
-					canSpawn = false;
-				} 
+				if (player1 != null) {
+					if (Vector2.Distance (whereToSpawn, player1.transform.position) < distanceFromPlayers) {
+						canSpawn = false;
+					} 
+				}
 
-				if (Vector2.Distance (whereToSpawn, player2.transform.position) < distanceFromPlayers) {
-					canSpawn = false;
-				} 
+				if (player2 != null) {
+					if (Vector2.Distance (whereToSpawn, player2.transform.position) < distanceFromPlayers) {
+						canSpawn = false;
+					} 
+				}
+
 					
 
 //				foreach (GameObject player in players) {

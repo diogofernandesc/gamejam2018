@@ -28,9 +28,6 @@ public class RobotController : MonoBehaviour {
 	}
 
 	void Update() {
-  }
-
-	void LateUpdate() {
 		gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
 		gameController.UpdateHealthBarSprite (this, healthBarSprite);
 
@@ -38,6 +35,16 @@ public class RobotController : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	}
+  
+
+//	void LateUpdate() {
+//		gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
+//		gameController.UpdateHealthBarSprite (this, healthBarSprite);
+//
+//		if (this.health <= 0) {
+//			Destroy (this.gameObject);
+//		}
+//	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
