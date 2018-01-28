@@ -29,9 +29,9 @@ public class GameController : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 	}
 
-	public void UpdateHealthBarSprite(){
-		robot = GameObject.Find ("Robot").GetComponent<RobotController> ();
-		healthBarSprite = GameObject.Find ("HealthBar").GetComponent<SpriteRenderer> ();
+	public void UpdateHealthBarSprite(RobotController robot, SpriteRenderer healthBarSprite){
+//		robot = GameObject.Find ("Robot").GetComponent<RobotController> ();
+//		healthBarSprite = GameObject.Find ("HealthBar").GetComponent<SpriteRenderer> ();
 
 		switch (robot.health) {
 		case 5:

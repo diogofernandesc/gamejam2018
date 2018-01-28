@@ -11,6 +11,7 @@ public class RobotController : MonoBehaviour {
 	public float moveSpeed;
 	public float turnSpeed;
 	public int health;
+	public SpriteRenderer healthBarSprite;
 	public PlayerControlled pc;
 	public GameController gameController;
 
@@ -29,7 +30,7 @@ public class RobotController : MonoBehaviour {
 		}
 
 		gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
-		gameController.UpdateHealthBarSprite ();
+		gameController.UpdateHealthBarSprite (this, healthBarSprite);
 	}
 	
 	// Update is called once per frame
