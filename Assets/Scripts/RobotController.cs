@@ -31,10 +31,12 @@ public class RobotController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		//Moving and steering
-		float absoluteMoveSpeed = pc.moveAmount() * this.moveSpeed;
-		Vector2 mov = new Vector2(absoluteMoveSpeed * Mathf.Cos(this.transform.eulerAngles.z * Mathf.Deg2Rad), absoluteMoveSpeed * Mathf.Sin(this.transform.eulerAngles.z * Mathf.Deg2Rad));
+		float hmov = pc.getHMove();
+		float vmov = pc.getVMove();
+		float absoluteMoveSpeed = Mathf.Sqrt(hmov * hmov + vmov * vmov) * this.moveSpeed;
+		this.rb2d.rotation = Mathf.Atan2 (vmov, hmov) * Mathf.Rad2Deg;
+		Vector2 mov = new Vector2(absoluteMoveSpeed * Mathf.Cos(this.rb2d.rotation * Mathf.Deg2Rad), absoluteMoveSpeed * Mathf.Sin(this.rb2d.rotation * Mathf.Deg2Rad));
 		this.rb2d.velocity = mov;
-		this.rb2d.MoveRotation (this.transform.eulerAngles.z + (pc.turnAmount() * -this.turnSpeed));
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
