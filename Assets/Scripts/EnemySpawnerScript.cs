@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawnerScript : MonoBehaviour {
 
@@ -27,6 +28,13 @@ public class EnemySpawnerScript : MonoBehaviour {
 	void Update () {
 		boosts = GameObject.FindGameObjectsWithTag ("PickUp");
 		players = GameObject.FindGameObjectsWithTag ("Player");
+
+		if (players.Length == 0) {
+			Time.timeScale = 0; // Pause game
+			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
+			gameOverText.enabled = true;	
+		}
+
 
 		if (Time.time > nextSpawn) {
 			nextSpawn = Time.time + spawnRate;
