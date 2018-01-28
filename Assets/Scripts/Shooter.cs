@@ -10,31 +10,39 @@ public class Shooter : MonoBehaviour
 	public Bullet niceBullet;
 	public float bulletOffset;
 	public PlayerControlled pc;
+	public GameObject baseObject;
 
 	// Use this for initialization
 	void Start () {
 		this.cooldown = 0.0f;
 		this.max_cooldown = 1.0f;
-		this.bulletOffset = 0.4f;
+		this.bulletOffset = 1.2f;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	// Get angle from horizontal and vertical axes
+	// tan(theta) = Opp / AdjW
+	// theta = atan2(Opp / Adj)
+	void Update() {
+		float zangle = Mathf.Rad2Deg * Mathf.Atan2(this.pc.getVLook(), this.pc.getHLook());
+		this.gameObject.transform.Rotate(new Vector3(0f, 0f, zangle - this.gameObject.transform.eulerAngles.z));
+	}
+
+	void FixedUpdate () {
 		if (this.cooldown > 0.0f) {
 			this.cooldown -= 0.1f;
 		}
-		if (pc.isFiring1()) {
+		if (this.pc.isFiring1()) {
 			if (this.cooldown <= 0.0f) {
 				Instantiate (meanBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
-				meanBullet.setShooter (this.gameObject);
+				meanBullet.setShooter (this.baseObject);
 				this.cooldown = this.max_cooldown;
 			}
 		}
-		else if (pc.isFiring2()) {
+		else if (this.pc.isFiring2()) {
 			if (this.cooldown <= 0.0f) {
-				this.gameObject.GetComponent<RobotController> ().health -= 1;
 				Instantiate (niceBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
-				niceBullet.setShooter (this.gameObject);
+				niceBullet.setShooter (this.baseObject);
 				this.cooldown = this.max_cooldown;
 			}
 		}

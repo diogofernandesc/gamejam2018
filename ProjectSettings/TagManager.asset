@@ -46,6 +46,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tank
+    uniqueID: 3682359249
+    locked: 0
+  - name: Turret
+    uniqueID: 2147188213
+    locked: 0
   - name: tv
     uniqueID: 2087960183
     locked: 0
