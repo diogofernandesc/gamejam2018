@@ -32,6 +32,7 @@ public class Shooter : MonoBehaviour
 		}
 		else if (pc.isFiring2()) {
 			if (this.cooldown <= 0.0f) {
+				this.gameObject.GetComponent<RobotController> ().health -= 1;
 				Instantiate (niceBullet, this.offsetPositionUsingRotation(), this.gameObject.transform.rotation);
 				niceBullet.setShooter (this.gameObject);
 				this.cooldown = this.max_cooldown;
