@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour {
 	public Rigidbody2D rb2d;
 	public int health;
 	public float speed = 2f;
-	public float minDistance = 3f;
+	private GameObject playerToUse;
 	GameObject[] players;
 	// Use this for initialization
 	void Start () {
@@ -22,17 +22,22 @@ public class EnemyController : MonoBehaviour {
    		}
 		players = GameObject.FindGameObjectsWithTag ("Player");
 
-		GameObject playerToUse = players [0];
-		float distanceToPlayer1 = Vector2.Distance (transform.position, players[0].transform.position);
-		float distanceToPlayer2 = Vector2.Distance (transform.position, players[1].transform.position);
+		if (players.Length == 1) {
+			playerToUse = players [0];
 
-		// Finds closest player and chases them instead
-		if ((Mathf.Min(distanceToPlayer1, distanceToPlayer2)) == distanceToPlayer2) {
-			playerToUse = players[1];
-		} 
+		} else if (players.Length == 2) {
+			float distanceToPlayer1 = Vector2.Distance (transform.position, players[0].transform.position);
+			float distanceToPlayer2 = Vector2.Distance (transform.position, players[1].transform.position);
 
-		transform.position = Vector2.MoveTowards(transform.position, playerToUse.transform.position, speed * Time.deltaTime);		
-		
+			// Finds closest player and chases them instead
+			if ((Mathf.Min(distanceToPlayer1, distanceToPlayer2)) == distanceToPlayer2) {
+				playerToUse = players[1];
+			} 
+		}
+
+		if (playerToUse != null) {
+			transform.position = Vector2.MoveTowards (transform.position, playerToUse.transform.position, speed * Time.deltaTime);		
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {

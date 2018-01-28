@@ -21,7 +21,10 @@ public class RobotController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (this.health == 0)
+	}
+
+	void LateUpdate() {
+		if (this.health <= 0)
 			Destroy (this.gameObject);
 	}
 	
