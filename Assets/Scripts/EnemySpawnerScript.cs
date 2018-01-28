@@ -32,57 +32,75 @@ public class EnemySpawnerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		boosts = GameObject.FindGameObjectsWithTag ("PickUp");
-		players = GameObject.FindGameObjectsWithTag ("Player");
+		GameObject player1 = GameObject.FindGameObjectWithTag ("Player");
+		GameObject player2 = GameObject.FindGameObjectWithTag ("Player2");
 
-		if (players.Length == 0) {
+		if (player1 == null && player2 == null) {
 			Time.timeScale = 0; // Pause game
 			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
 			gameOverText.enabled = true;	
-		}
+		
+		} else {
 
-		foreach (GameObject player in players) {
 			totalKillCount = 0;
-			totalKillCount += player.GetComponent<RobotController> ().killCount;
-		}
+			totalKillCount += player1.GetComponent<RobotController> ().killCount;
+			totalKillCount += player2.GetComponent<RobotController> ().killCount;
 
-
-		if (totalKillCount > 0) {
-			if (totalKillCount % this.waveAmount == 0) {
-				waveAmount += 5;
-				health += 1;
-				if (speed <= 4f) {
-					speed += 0.5f;
+			if (totalKillCount > 0) {
+				if (totalKillCount % this.waveAmount == 0) {
+					waveAmount += 5;
+					health += 1;
+					if (speed <= 4f) {
+						speed += 0.5f;
+					}
+					spawnRate -= 0.5f;
 				}
-				spawnRate -= 0.5f;
 			}
-		}
-			
-		if (Time.time > nextSpawn) {
-			nextSpawn = Time.time + spawnRate;
-			randX = Random.Range (-rangeX, rangeX);
-			randY = Random.Range (-rangeY, rangeY);
-			whereToSpawn = new Vector2 (randX, randY);
 
-			bool canSpawn = true;
+			if (Time.time > nextSpawn) {
+				nextSpawn = Time.time + spawnRate;
+				randX = Random.Range (-rangeX, rangeX);
+				randY = Random.Range (-rangeY, rangeY);
+				whereToSpawn = new Vector2 (randX, randY);
 
+				bool canSpawn = true;
 
-			foreach (GameObject player in players) {
-				// Ensure enemy is spawned far enough away from player
-				if (Vector2.Distance (whereToSpawn, player.transform.position) < distanceFromPlayers) {
+				if (Vector2.Distance (whereToSpawn, player1.transform.position) < distanceFromPlayers) {
 					canSpawn = false;
-				}
-			}
-				
-			// Ensure enemy is spawned far away but closer to boosts
-			foreach (GameObject boost in boosts) {
-				if (Vector2.Distance (whereToSpawn, boost.transform.position) < distanceFromBoosts) {
+				} 
+
+				if (Vector2.Distance (whereToSpawn, player2.transform.position) < distanceFromPlayers) {
 					canSpawn = false;
+				} 
+					
+
+//				foreach (GameObject player in players) {
+//					// Ensure enemy is spawned far enough away from player
+//					if (Vector2.Distance (whereToSpawn, player.transform.position) < distanceFromPlayers) {
+//						canSpawn = false;
+//					}
+//				}
+
+				// Ensure enemy is spawned far away but closer to boosts
+				foreach (GameObject boost in boosts) {
+					if (Vector2.Distance (whereToSpawn, boost.transform.position) < distanceFromBoosts) {
+						canSpawn = false;
+					}
+				}
+
+				if (canSpawn) {
+					Instantiate (enemy, whereToSpawn, Quaternion.identity);
 				}
 			}
-				
-			if (canSpawn) {
-				Instantiate (enemy, whereToSpawn, Quaternion.identity);
-			}
+		
 		}
+
+//		if (players.Length == 0) {
+//			Time.timeScale = 0; // Pause game
+//			Text gameOverText = GameObject.Find ("GameOverText").GetComponent<Text> ();
+//			gameOverText.enabled = true;	
+//		}
+
+
 	}
 }

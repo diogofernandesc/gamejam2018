@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
 	public int targetHealthChange;
 	public int shooterHealthChange;
 	private GameObject shooter;
+	private GameController gameController;
 
 
 	// Use this for initialization
@@ -18,6 +19,7 @@ public class Bullet : MonoBehaviour {
 		this.speed = 8;
 		float zangleRad = this.transform.eulerAngles.z * Mathf.Deg2Rad;
 		rb2d.velocity = new Vector2 (this.speed * Mathf.Cos(zangleRad), this.speed * Mathf.Sin(zangleRad));
+		this.gameController = GameObject.Find ("Main Camera").GetComponent<GameController> ();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +32,7 @@ public class Bullet : MonoBehaviour {
 			if (collidingObject.GetComponent<RobotController> () != null) {
 				collidingObject.GetComponent<RobotController> ().health += this.targetHealthChange;
 			} else if (collidingObject.GetComponent<EnemyController> () != null) {
+				gameController.updateScore (1);
 				collidingObject.GetComponent<EnemyController> ().health += this.targetHealthChange;
 			}
 			Destroy (this.gameObject);
